@@ -1,5 +1,7 @@
 #!/bin/sh
 echo "running configure"
+echo $PACKAGE_STAGIN_DIR
+
 ./configure
 if [ $? = 0 ]; then
     echo "configure complete"
