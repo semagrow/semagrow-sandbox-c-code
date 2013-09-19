@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "running configure"
 ./configure
-if [ $? == 0 ]; then
+if [ $? = 0 ]; then
     echo "configure complete"
     echo "running make"
     make
