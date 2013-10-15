@@ -1,0 +1,6 @@
+aclocal.m4
+autom4te.cache/
+target/
+config.log
+config.status
+*.o
