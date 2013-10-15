@@ -12,6 +12,8 @@
 
     <properties>
         <exec.version>1.2.1</exec.version>
+				<rpmplugin.version>2.1-alpha-3</rpmplugin.version>
+				<resources.version>2.6</resources.version>
     </properties>
     
     <build>
@@ -31,6 +33,58 @@
 						<configuration>
 							<executable>build.sh</executable>
 						</configuration>					
+					</plugin>
+					<plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>rpm-maven-plugin</artifactId>
+            <version>${rpmplugin.version}</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>rpm</goal>
+                    </goals>
+                    <configuration>
+                        <group>Applications/Databases</group>
+                        <copyright>2013, SWC</copyright>
+                        <packager>SWC</packager>
+												<needarch>x86_64</needarch>
+                        <mappings>
+                            <mapping>
+                                <directory>/bin</directory>
+                                <directoryIncluded>false</directoryIncluded>
+                                <filemode>755</filemode>
+                                <sources>
+                                    <source>
+                                        <location>${project.build.directory}/bin</location>
+                                    </source>
+                                </sources>
+                            </mapping>
+                        </mappings>
+                    </configuration>
+                </execution>
+            </executions>
+        	</plugin>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>${resources.version}</version>
+						<executions>
+							<execution>
+								<id>copy-rpm</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${basedir}/target</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${project.build.directory}/rpm/${project.artifactId}/RPMS/x86_64</directory>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
         </plugins>
     </build>
