@@ -7,39 +7,33 @@
     <groupId>eu.semagrow.stack.sandbox</groupId>
     <artifactId>c-sandbox</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-		<packaging>nar</packaging>
 
     <name>c-sandbox</name>
 
     <properties>
-        <nar.version>3.0.0-scijava-2</nar.version>
+        <exec.version>1.2.1</exec.version>
     </properties>
     
     <build>
-			<pluginManagement>
-		    <plugins>
-		      <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>nar-maven-plugin</artifactId>
-		        <version>${nar.version}</version>
-		      </plugin>
-		    </plugins>
-		  </pluginManagement>
         <plugins>
 					<plugin>
-						<artifactId>nar-maven-plugin</artifactId>
-						<version>${nar.version}</version>
-						<extensions>true</extensions>
-					</plugin>            
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>${exec.version}</version>
+						<executions>
+							<execution>
+								<phase>compile</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>build.sh</executable>
+						</configuration>					
+					</plugin>
         </plugins>
     </build>
-
-		<pluginRepositories>
-				<pluginRepository>
-					<id>imagej.thirdparty</id>
-					<url>http://maven.imagej.net/content/repositories/thirdparty</url>
-				</pluginRepository>
-		</pluginRepositories>
-
+		
 </project>
 

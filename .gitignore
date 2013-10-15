@@ -4,3 +4,7 @@ target/
 config.log
 config.status
 *.o
+Makefile
+Makefile
+src/Makefile
+src/Makefile.in
